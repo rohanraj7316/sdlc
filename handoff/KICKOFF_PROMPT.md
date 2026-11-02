@@ -1,0 +1,1 @@
+Read CLAUDE.md, docs/DESIGN.md and docs/ROADMAP.md. The Go source for `aisdlc` may be in this folder (if not, the spec is authoritative and the code must be rebuilt to it). First: run `go vet ./... && go test -race ./...` and report the true state versus ROADMAP "Built". Then plan roadmap item 1 (worker loop) and wait for my OK before coding. Ask me one question at a time.

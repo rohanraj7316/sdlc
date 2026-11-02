@@ -1,0 +1,110 @@
+{
+  "data_dir": "./data",
+  "database": {
+    "url_env": "AISDLC_DATABASE_URL"
+  },
+  "jira": {
+    "base_url": "https://jira.corp.local",
+    "flavor": "datacenter",
+    "token_env": "JIRA_TOKEN",
+    "trigger_label": "ai-sdlc",
+    "subtask_type": "Sub-task",
+    "jql": ""
+  },
+  "bitbucket": {
+    "base_url": "https://bitbucket.corp.local",
+    "token_env": "BITBUCKET_TOKEN"
+  },
+  "approvers": {
+    "PROJ": {
+      "prd": {
+        "required": [
+          "jdoe",
+          "asmith"
+        ],
+        "quorum": "all"
+      },
+      "tech": {
+        "required": [
+          "dev1"
+        ],
+        "quorum": "any"
+      },
+      "pr": {
+        "required": [
+          "reviewer1",
+          "reviewer2"
+        ],
+        "quorum": "any"
+      },
+      "qa": {
+        "required": [
+          "qa1"
+        ],
+        "quorum": "all"
+      }
+    },
+    "*": {
+      "prd": {
+        "required": [
+          "product-lead"
+        ],
+        "quorum": "any"
+      }
+    }
+  },
+  "participants": {
+    "jdoe": "product",
+    "asmith": "product",
+    "dev1": "developer",
+    "qa1": "qa",
+    "reviewer1": "code reviewer",
+    "reviewer2": "code reviewer"
+  },
+  "bot_user": "aisdlc-bot",
+  "agents": {
+    "prd_interviewer": {
+      "adapter": "agy",
+      "sandbox": "read_only"
+    },
+    "tech_proposer": {
+      "adapter": "agy",
+      "sandbox": "read_only"
+    },
+    "builder": {
+      "adapter": "claude",
+      "sandbox": "workspace_write",
+      "timeout": "45m"
+    },
+    "reviewer": {
+      "adapter": "agy",
+      "sandbox": "read_only"
+    },
+    "qa": {
+      "adapter": "agy",
+      "sandbox": "workspace_write"
+    }
+  },
+  "policy": {
+    "strict_independence": false
+  },
+  "limits": {
+    "review_rounds": 2,
+    "build_attempts": 2,
+    "max_questions": 40
+  },
+  "claude": {
+    "bin": "claude"
+  },
+  "agy": {
+    "bin": "agy",
+    "pty": "script",
+    "home_root": "./data/agy-homes",
+    "provider": "gemini",
+    "skip_permissions_for_write": false
+  },
+  "llmapi": {
+    "model": "claude-sonnet-5-5",
+    "api_key_env": "ANTHROPIC_API_KEY"
+  }
+}
